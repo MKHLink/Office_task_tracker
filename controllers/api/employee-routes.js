@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Employee} = require('../../models');
+const {Employee, Task} = require('../../models');
 
 router.get('/',(req, res)=>{
     Employee.findAll({
@@ -17,7 +17,13 @@ router.get('/:id', (req, res) => {
       attributes:{exclude: ['password']},
         where: {
           id: req.params.id
-        }
+        },
+        include: [
+          {
+            model: Task,
+            attributes: ['id','title','deadline','created_at']
+          }
+        ]
       })
         .then(dbUserData => {
           if (!dbUserData) {
