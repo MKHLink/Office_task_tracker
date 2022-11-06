@@ -24,6 +24,7 @@ Task.init(
         
         manager_id : {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'manager',
                 key: 'id'
@@ -32,6 +33,7 @@ Task.init(
 
         employee_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'employee',
                 key: 'id'
