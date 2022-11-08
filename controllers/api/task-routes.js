@@ -58,7 +58,7 @@ router.get('/', (req, res) => {
     Task.create({
       title: req.body.title,
       deadline: req.body.deadline,
-      manager_id: req.body.manager_id,
+      manager_id: req.session.manager_id,
       employee_id: req.body.employee_id
     })
       .then(dbPostData => res.json(dbPostData))

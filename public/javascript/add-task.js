@@ -1,0 +1,27 @@
+async function newFormHandler(event) {
+    event.preventDefault();
+  
+    const title = document.querySelector('input[name="task-title"]').value;
+    const deadline = document.querySelector('input[name="deadline"]').value;
+    const employee_id = document.querySelector('input[name="employee_id"]').value;
+    
+    const response = await fetch(`/api/task`, {
+      method: 'POST',
+      body: JSON.stringify({
+        title,
+        deadline,
+        employee_id
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert(response.statusText);
+    }
+  }
+  
+  document.querySelector('.new-task-form').addEventListener('submit', newFormHandler);
