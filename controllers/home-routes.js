@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const {Manager, Employee, Task} = require('../models');
 
 router.get('/',(req,res)=>{
+    console.log(req.session);
     Task.findAll({
         attributes: ['id', 'title', 'deadline', 'created_at'],
         include: [
@@ -27,6 +28,12 @@ router.get('/',(req,res)=>{
 });
 
 router.get('/login',(req,res)=>{
+
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
     res.render('login');
 });
 
