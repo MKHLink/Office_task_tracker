@@ -19,7 +19,9 @@ router.get('/',(req,res)=>{
       })
         .then(dbTaskData => {
             const tasks = dbTaskData.map(task => task.get({plain:true}));
-            res.render('homepage',{tasks});
+            res.render('homepage',{
+              tasks,
+            loggedIn: req.session.loggedIn});
         })
         .catch(err => {
           console.log(err);
