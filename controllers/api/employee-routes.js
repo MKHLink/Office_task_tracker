@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {Employee, Task} = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.get('/',(req, res)=>{
     Employee.findAll({
@@ -38,7 +39,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/',(req,res)=>{
+router.post('/',withAuth,(req,res)=>{
     Employee.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -75,7 +76,7 @@ router.post('/login', (req,res)=>{
   });
 });
 
-router.put('/:id',(req,res)=>{
+router.put('/:id',withAuth,(req,res)=>{
     Employee.update(req.body, {
         individualHooks: true,
         where: {
@@ -95,7 +96,7 @@ router.put('/:id',(req,res)=>{
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',withAuth, (req, res) => {
     Employee.destroy({
         where: {
           id: req.params.id

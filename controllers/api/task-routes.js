@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Task, Manager, Employee } = require('../../models');
-
+const withAuth = require('../../utils/auth');
 
 
 router.get('/', (req, res) => {
@@ -54,7 +54,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.post('/', (req, res) => {
+  router.post('/', withAuth,(req, res) => {
     Task.create({
       title: req.body.title,
       deadline: req.body.deadline,
@@ -68,7 +68,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.put('/:id', (req, res) => {
+  router.put('/:id',withAuth, (req, res) => {
     Task.update(
       {
         title: req.body.title
@@ -92,7 +92,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', withAuth,(req, res) => {
     Task.destroy({
       where: {
         id: req.params.id

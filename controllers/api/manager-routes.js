@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {Manager, Task, Employee} = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.get('/',(req, res)=>{
     Manager.findAll({
@@ -42,7 +43,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/',(req,res)=>{
+router.post('/',withAuth,(req,res)=>{
     Manager.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -99,7 +100,7 @@ router.post('/logout',(req,res)=>{
   }
 });
 
-router.put('/:id',(req,res)=>{
+router.put('/:id',withAuth,(req,res)=>{
     Manager.update(req.body, {
         individualHooks: true,
         where: {
@@ -119,7 +120,7 @@ router.put('/:id',(req,res)=>{
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',withAuth, (req, res) => {
     Manager.destroy({
         where: {
           id: req.params.id

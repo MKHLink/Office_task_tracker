@@ -109,11 +109,11 @@
     color: #3486eb;
   }
   
-  .delete-post-btn {
+  .delete-task-btn {
     background-color: #d41414;
   }
   
-  .delete-post-btn:hover {
+  .delete-task-btn:hover {
     background-color: #ff643d;
   }
   
@@ -161,11 +161,11 @@
     opacity: .6;
   }
   
-  .new-post-form input {
+  .new-task-form input {
     width: 300px;
   }
   
-  .edit-post-form {
+  .edit-task-form {
     margin-bottom: 5%;
   }
   
