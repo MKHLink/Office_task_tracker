@@ -40,13 +40,13 @@ router.get('/login',(req,res)=>{
 });
 
 router.get('/employee-login',(req,res)=>{
-  if(req.session.loggedIn)
-  {
+
+  if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
 
-  res.render('employee-login');
-})
+    res.render('employee-login');
+});
 
 module.exports = router;

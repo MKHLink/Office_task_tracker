@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {Employee, Task} = require('../../models');
-const withAuth = require('../../utils/auth');
+const employeeAuth = require('../../utils/employeeAuth');
 
 router.get('/',(req, res)=>{
     Employee.findAll({
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/',withAuth,(req,res)=>{
+router.post('/',(req,res)=>{
     Employee.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -75,7 +75,6 @@ router.post('/login', (req,res)=>{
       req.session.employee_id = dbUserData.id;
       req.session.email = dbUserData.email;
       req.session.loggedIn = true;
-
     res.json({user: dbUserData, message: 'Logged in!'});
     });
   });
@@ -92,7 +91,7 @@ router.post('/logout',(req,res)=>{
   }
 });
 
-router.put('/:id',withAuth,(req,res)=>{
+router.put('/:id',employeeAuth,(req,res)=>{
     Employee.update(req.body, {
         individualHooks: true,
         where: {
@@ -112,7 +111,7 @@ router.put('/:id',withAuth,(req,res)=>{
         });
 });
 
-router.delete('/:id',withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Employee.destroy({
         where: {
           id: req.params.id
