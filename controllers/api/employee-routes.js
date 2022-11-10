@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {Employee, Task} = require('../../models');
-const withAuth = require('../../utils/auth');
+const employeeAuth = require('../../utils/auth');
 
 router.get('/',(req, res)=>{
     Employee.findAll({
@@ -93,7 +93,7 @@ router.post('/logout',(req,res)=>{
   }
 });
 
-router.put('/:id',withAuth,(req,res)=>{
+router.put('/:id',employeeAuth,(req,res)=>{
     Employee.update(req.body, {
         individualHooks: true,
         where: {

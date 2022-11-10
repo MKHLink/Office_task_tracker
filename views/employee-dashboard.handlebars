@@ -1,4 +1,3 @@
-
 {{#if tasks.length}}
 <section>
   <h2>Your Tasks</h2>
@@ -6,6 +5,7 @@
     {{#each tasks as |task|}}
     <li>
       {{> task-info task}}
+      <a href="/dashboard/edit/{{task.id}}" class="edit-link">Edit Task</a>
     </li>
     {{/each}}
   </ol>
