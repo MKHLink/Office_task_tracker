@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Task,Manager, Employee } = require('../models');
-const employeeAuth = require('../utils/auth');
+const employeeAuth = require('../utils/employeeAuth');
 
 router.get('/',employeeAuth,  (req, res) => {
     Task.findAll({
@@ -36,6 +36,34 @@ router.get('/',employeeAuth,  (req, res) => {
           res.status(500).json(err);
         });
   });
+
+  router.get('/edit/:id',employeeAuth,(req,res)=>{
+    Task.findByPk(req.params.id,{
+      attributes:[
+        'title',
+        'deadline'
+      ]
+    })
+    .then(dbTaskData =>{
+      if(dbTaskData)
+      {
+        const task = dbTaskData.get({plain:true});
+
+      res.render('employee-delete-task',{
+        task,
+        loggedIn: true
+      });
+      }
+      else
+      {
+        res.status(404).end();
+      }
+    })
+    .catch(err=>{
+      res.status(500).json(err);
+    });
+  });
+
 module.exports=router;
 
 /*

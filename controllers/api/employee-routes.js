@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {Employee, Task} = require('../../models');
-const employeeAuth = require('../../utils/auth');
+const employeeAuth = require('../../utils/employeeAuth');
 
 router.get('/',(req, res)=>{
     Employee.findAll({

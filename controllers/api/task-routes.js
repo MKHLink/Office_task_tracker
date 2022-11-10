@@ -3,6 +3,7 @@ const { Task, Manager, Employee } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
+
 router.get('/', (req, res) => {
     Task.findAll({
       attributes: ['id', 'title', 'deadline', 'created_at'],
@@ -94,7 +95,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.delete('/:id', withAuth,(req, res) => {
+  router.delete('/:id',(req, res) => {
     Task.destroy({
       where: {
         id: req.params.id
