@@ -37,4 +37,32 @@ router.get('/', withAuth, (req, res) => {
       });
   });
 
+  router.get('/edit/:id',withAuth,(req,res)=>{
+    Task.findByPk(req.params.id,{
+      attributes:[
+        'title',
+        'deadline'
+      ],
+      include:[{model:Employee, attributes:['id']}]
+    })
+    .then(dbTaskData =>{
+      if(dbTaskData)
+      {
+        const task = dbTaskData.get({plain:true});
+
+      res.render('edit-task',{
+        task,
+        loggedIn: true
+      });
+      }
+      else
+      {
+        res.status(404).end();
+      }
+    })
+    .catch(err=>{
+      res.status(500).json(err);
+    });
+  });
+
 module.exports = router;

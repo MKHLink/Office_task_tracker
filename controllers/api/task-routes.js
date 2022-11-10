@@ -68,10 +68,12 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.put('/:id',withAuth, (req, res) => {
+  router.put('/:id', (req, res) => {
     Task.update(
       {
-        title: req.body.title
+        title: req.body.title,
+        deadline: req.body.deadline,
+        employee_id: req.body.employee_id
       },
       {
         where: {
