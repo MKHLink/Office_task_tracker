@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/',withAuth,(req,res)=>{
+router.post('/',(req,res)=>{
     Manager.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -120,7 +120,7 @@ router.put('/:id',withAuth,(req,res)=>{
         });
 });
 
-router.delete('/:id',withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Manager.destroy({
         where: {
           id: req.params.id

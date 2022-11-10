@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/',withAuth,(req,res)=>{
+router.post('/',(req,res)=>{
     Employee.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -71,9 +71,26 @@ router.post('/login', (req,res)=>{
       return;
     }
 
-    res.json({user: dbUserData, message: 'Logged in!'});
+    req.session.save(() => {
+      req.session.employee_id = dbUserData.id;
+      req.session.email = dbUserData.email;
+      req.session.loggedIn = true;
+
+      res.json({user: dbUserData, message: 'Logged in!'});
+      });
 
   });
+});
+
+router.post('/logout',(req,res)=>{
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  }
+  else {
+    res.status(404).end();
+  }
 });
 
 router.put('/:id',withAuth,(req,res)=>{
@@ -96,7 +113,7 @@ router.put('/:id',withAuth,(req,res)=>{
         });
 });
 
-router.delete('/:id',withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Employee.destroy({
         where: {
           id: req.params.id
