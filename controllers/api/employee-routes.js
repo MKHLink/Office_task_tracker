@@ -71,9 +71,25 @@ router.post('/login', (req,res)=>{
       return;
     }
 
-    res.json({user: dbUserData, message: 'Logged in!'});
+    req.session.save(() => {
+      req.session.employee_id = dbUserData.id;
+      req.session.email = dbUserData.email;
+      req.session.loggedIn = true;
 
+    res.json({user: dbUserData, message: 'Logged in!'});
+    });
   });
+});
+
+router.post('/logout',(req,res)=>{
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  }
+  else {
+    res.status(404).end();
+  }
 });
 
 router.put('/:id',withAuth,(req,res)=>{
