@@ -2,6 +2,7 @@ const Manager = require('./Manager');
 const Employee = require('./Employee');
 const Task = require('./Task');
 
+//many to one relationship between the task and manager tables
 Manager.hasMany(Task,{
     foreignKey: 'manager_id'
 });
@@ -11,6 +12,7 @@ Task.belongsTo(Manager, {
     onDelete: 'cascade'
 });
 
+//many to one relationship between the task and employee table
 Employee.hasMany(Task, {
     foreignKey: 'employee_id'
 });

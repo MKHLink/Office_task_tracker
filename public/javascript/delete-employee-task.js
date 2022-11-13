@@ -5,6 +5,7 @@ async function deleteFormHandler(event){
         window.location.toString().split('/').length-1
     ];
 
+    //calls the task api to delete a task from the database
     const response = await fetch(`/api/task/${id}`,{
         method: 'DELETE'
     });

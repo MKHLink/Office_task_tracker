@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {Manager, Task, Employee} = require('../../models');
 const withAuth = require('../../utils/auth');
 
+//gets all managers
 router.get('/',(req, res)=>{
     Manager.findAll({
       attributes:{exclude: ['password']}
@@ -13,6 +14,7 @@ router.get('/',(req, res)=>{
         });
 });
 
+//gets one manager
 router.get('/:id', (req, res) => {
     Manager.findOne({
       attributes:{exclude: ['password']},
@@ -43,6 +45,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
+//creates a manager
 router.post('/',(req,res)=>{
     Manager.create({
         first_name: req.body.first_name,
@@ -61,6 +64,7 @@ router.post('/',(req,res)=>{
       })
 });
 
+//log in routes for a manager account and creates a session upon log in success
 router.post('/login', (req,res)=>{
   Manager.findOne({
     where: {
@@ -89,6 +93,7 @@ router.post('/login', (req,res)=>{
   });
 });
 
+//route to destory a session 
 router.post('/logout',(req,res)=>{
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -100,6 +105,7 @@ router.post('/logout',(req,res)=>{
   }
 });
 
+//updates a manager user attributes
 router.put('/:id',withAuth,(req,res)=>{
     Manager.update(req.body, {
         individualHooks: true,
@@ -120,6 +126,7 @@ router.put('/:id',withAuth,(req,res)=>{
         });
 });
 
+//delete a manager object from table
 router.delete('/:id', (req, res) => {
     Manager.destroy({
         where: {

@@ -1,3 +1,4 @@
+//imports all the api and html routes, sets api rotes after /api
 const router = require('express').Router();
 
 const homeRoutes = require('./home-routes');

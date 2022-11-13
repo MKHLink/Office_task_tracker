@@ -1,4 +1,5 @@
 async function logout() {
+  //calls the logout api and redirects to the login page
     const response = await fetch('/api/manager/logout', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' }
