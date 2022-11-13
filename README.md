@@ -11,7 +11,7 @@ OnlyTasks
 
 [Usage](#usage)
 
-[License](#license)
+[Heroku](#heroku link)
 
 [Contributors](#contributors)
 
