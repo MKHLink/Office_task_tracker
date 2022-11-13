@@ -1,1 +1,48 @@
-# Office_task_tracker
+
+
+
+# Title
+OnlyTasks
+
+# Table of Contents
+[Description](#description)
+
+[Installation](#instalation)
+
+[Usage](#usage)
+
+[License](#license)
+
+[Contributors](#contributors)
+
+[Tests](#tests)
+
+[Questions](#questions)
+
+## Description
+A task tracking website that can be used to create and assing tasks
+
+## Installation
+Clone the repo and then upon navigating to the cloned directory, run npm i, in order to install all the dependencies, use npm start and then visit localhost and port 3001 to use the website
+
+## Usage
+For an office or business where accounts with manager credentials can assign tasks to employees with team member credentials, and upon completion of a task, team members can mark them as complete
+
+![alt text](./screenshots/login.png)
+![alt text](./screenshots/manager.png)
+
+## Heroku Link
+https://onlytasks.herokuapp.com/login
+
+
+## Contribution
+Mohammad Komol Hasan
+
+## Tests
+run npm test to run a test for the date format function
+
+## Questions
+GitHub: MKHLink
+
+Email: likhonhasankomol@gmail.com
+    
