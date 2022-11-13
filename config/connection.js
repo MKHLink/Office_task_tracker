@@ -1,9 +1,11 @@
 const Sequelize = require('sequelize');
 
+//env file that holds all local credentials
 require('dotenv').config();
 
 let sequelize;
 
+//uses either jawsdb server or local server to start database
 if(process.env.JAWSDB_URL)
 {
     sequelize = new Sequelize(process.env.JAWSDB_URL);

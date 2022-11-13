@@ -5,6 +5,7 @@ async function newFormHandler(event) {
     const deadline = document.querySelector('input[name="deadline"]').value;
     const employee_id = document.querySelector('input[name="employee_id"]').value;
     
+    //calls the task api to create a task in the database
     const response = await fetch(`/api/task`, {
       method: 'POST',
       body: JSON.stringify({

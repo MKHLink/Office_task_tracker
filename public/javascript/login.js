@@ -9,6 +9,7 @@ async function signupFormHandler(event)
 
     if(first_name && last_name && email && password)
     {
+      //calls the manager api to create a new manager in the database
         const response = await fetch('/api/manager',{
             method: 'post',
             body: JSON.stringify({
@@ -36,6 +37,7 @@ async function loginFormHandler(event) {
     const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
   
+    //calls the manager api and uses the post method to log in for an existing user in the database
     if (email && password) {
       const response = await fetch('/api/manager/login', {
         method: 'post',

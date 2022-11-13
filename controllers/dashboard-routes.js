@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const { Task,Manager, Employee } = require('../models');
 const withAuth = require('../utils/auth');
 
+//displayes all tasks that relates to the logged in session id, and checks if loggedIn using middleware 
 router.get('/', withAuth, (req, res) => {
     Task.findAll({
       where: {
@@ -37,6 +38,7 @@ router.get('/', withAuth, (req, res) => {
       });
   });
 
+  //gets particualr tasks and renders them in the webpage
   router.get('/edit/:id',withAuth,(req,res)=>{
     Task.findByPk(req.params.id,{
       attributes:[

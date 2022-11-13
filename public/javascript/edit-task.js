@@ -8,6 +8,7 @@ async function editFormHandler(event){
         window.location.toString().split('/').length-1
     ];
 
+    //matches the id from the window location address and calls the task api to update a task in the database
     const response = await fetch(`/api/task/${id}`,{
         method: 'PUT',
         body: JSON.stringify({
@@ -20,6 +21,7 @@ async function editFormHandler(event){
         }
     });
 
+    //redirects to dashboard if request processes successfully
     if(response.ok)
     {
         document.location.replace('/dashboard');

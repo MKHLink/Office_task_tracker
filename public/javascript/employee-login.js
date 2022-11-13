@@ -7,6 +7,7 @@ async function signupFormHandler(event)
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
+    //calls the employee api to create a new employee in the database
     if(first_name && last_name && email && password)
     {
         const response = await fetch('/api/employee',{
@@ -36,6 +37,7 @@ async function loginFormHandler(event) {
     const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
   
+    //calls the employee api and uses the post method to log in for an existing user in the database
     if (email && password) {
       const response = await fetch('/api/employee/login', {
         method: 'post',

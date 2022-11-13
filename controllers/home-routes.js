@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {Manager, Employee, Task} = require('../models');
 
+//get routes to get all exisitng tasks and display in homepage handlebars
 router.get('/',(req,res)=>{
     console.log(req.session);
     Task.findAll({
@@ -29,6 +30,7 @@ router.get('/',(req,res)=>{
         });
 });
 
+//renders the login pages
 router.get('/login',(req,res)=>{
 
   if (req.session.loggedIn) {
@@ -39,6 +41,7 @@ router.get('/login',(req,res)=>{
     res.render('login');
 });
 
+//renders the login page for employees
 router.get('/employee-login',(req,res)=>{
 
   if (req.session.loggedIn) {

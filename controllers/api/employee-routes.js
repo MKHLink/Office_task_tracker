@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {Employee, Task} = require('../../models');
 const employeeAuth = require('../../utils/employeeAuth');
 
+//gets all employee objects
 router.get('/',(req, res)=>{
     Employee.findAll({
       attributes:{exclude: ['password']}
@@ -13,6 +14,7 @@ router.get('/',(req, res)=>{
         });
 });
 
+//gets one employee object
 router.get('/:id', (req, res) => {
     Employee.findOne({
       attributes:{exclude: ['password']},
@@ -39,6 +41,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
+//creates a new employee object
 router.post('/',(req,res)=>{
     Employee.create({
         first_name: req.body.first_name,
@@ -53,6 +56,7 @@ router.post('/',(req,res)=>{
         });
 });
 
+//log in as an existing employee and create a new session upon successful log in
 router.post('/login', (req,res)=>{
   Employee.findOne({
     where: {
@@ -80,6 +84,7 @@ router.post('/login', (req,res)=>{
   });
 });
 
+//destroys the current session
 router.post('/logout',(req,res)=>{
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -91,6 +96,7 @@ router.post('/logout',(req,res)=>{
   }
 });
 
+//updates an employee objects with middleware that checks for authentication
 router.put('/:id',employeeAuth,(req,res)=>{
     Employee.update(req.body, {
         individualHooks: true,
@@ -111,6 +117,7 @@ router.put('/:id',employeeAuth,(req,res)=>{
         });
 });
 
+//deletes employee object
 router.delete('/:id', (req, res) => {
     Employee.destroy({
         where: {

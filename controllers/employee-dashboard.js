@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const { Task,Manager, Employee } = require('../models');
 const employeeAuth = require('../utils/employeeAuth');
 
+//displays all tasks related to the logged in user with authentication middleware that checks if loggedIn
 router.get('/',employeeAuth,  (req, res) => {
     Task.findAll({
         where: {
@@ -37,6 +38,7 @@ router.get('/',employeeAuth,  (req, res) => {
         });
   });
 
+  //gets a specific tasks and displayes them on the rendered page
   router.get('/edit/:id',employeeAuth,(req,res)=>{
     Task.findByPk(req.params.id,{
       attributes:[

@@ -3,7 +3,7 @@ const { Task, Manager, Employee } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-
+//gets all tasks 
 router.get('/', (req, res) => {
     Task.findAll({
       attributes: ['id', 'title', 'deadline', 'created_at'],
@@ -25,6 +25,7 @@ router.get('/', (req, res) => {
       });
   });
 
+  //gets one task
   router.get('/:id', (req, res) => {
     Task.findOne({
       where: {
@@ -55,6 +56,7 @@ router.get('/', (req, res) => {
       });
   });
 
+  //creates a task
   router.post('/', withAuth,(req, res) => {
     Task.create({
       title: req.body.title,
@@ -69,6 +71,7 @@ router.get('/', (req, res) => {
       });
   });
 
+  //updates a task
   router.put('/:id', (req, res) => {
     Task.update(
       {
@@ -95,6 +98,7 @@ router.get('/', (req, res) => {
       });
   });
 
+  //deletes a task
   router.delete('/:id',(req, res) => {
     Task.destroy({
       where: {
