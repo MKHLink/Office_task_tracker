@@ -11,7 +11,7 @@ OnlyTasks
 
 [Usage](#usage)
 
-[Heroku](#heroku link)
+[Heroku](#heroku)
 
 [Contributors](#contributors)
 
@@ -31,7 +31,7 @@ For an office or business where accounts with manager credentials can assign tas
 ![alt text](./screenshots/login.png)
 ![alt text](./screenshots/manager.png)
 
-## Heroku Link
+## Heroku 
 https://onlytasks.herokuapp.com/login
 
 
