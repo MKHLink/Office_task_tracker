@@ -36,7 +36,7 @@ https://onlytasks.herokuapp.com/login
 
 
 ## Contribution
-Mohammad Komol Hasan
+Linkhon Hasan
 
 ## Tests
 run npm test to run a test for the date format function
